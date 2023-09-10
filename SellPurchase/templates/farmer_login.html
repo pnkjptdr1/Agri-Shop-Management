@@ -1,0 +1,76 @@
+{% extends 'navbar.html' %} {% block main %} {% load static %}
+
+<!-- Page Header Start -->
+<div class="page-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2>Farmer Login</h2>
+      </div>
+      <div class="col-12">
+        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'farmer_login' %}">Login</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Student Login Start -->
+<div class="contact">
+  <div class="container">
+    <div class="section-header text-center">
+      <h2>Farmer Login</h2>
+    </div>
+    <div class="contact-img">
+      <img src="{% static 'img/help.png' %}" alt="Image" />
+    </div>
+    <div class="contact-form">
+      <div id="success"></div>
+
+      <form method="POST" action="farmer_login">
+        {% csrf_token %} {% if error%}
+        <div class="alert alert-danger" role="alert">{{error}}</div>
+        {% endif %}
+
+        <div class="control-group">
+          <input
+            type="email"
+            name="email"
+            value="{{values.email}}"
+            class="form-control"
+            placeholder="Enter Email Id"
+            required
+          />
+        </div>
+
+        <div class="control-group mt-3">
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            placeholder="********"
+            required
+          />
+        </div>
+
+        <div>
+          <button class="btn btn-custom mt-5" type="submit">Login Now</button>
+        </div>
+      </form>
+
+      <hr />
+
+      <!-- <button class="btn btn-custom mt-3"> -->
+      <div>
+        <p class="text-center">
+          Create an account? <a href="{% url 'signup' %}">Signup</a>
+        </p>
+      </div>
+      <!-- </button> -->
+    </div>
+  </div>
+</div>
+<!-- Farmer Login End -->
+
+{% endblock %}

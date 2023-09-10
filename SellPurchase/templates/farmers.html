@@ -1,0 +1,114 @@
+{% extends 'navbar.html' %} {% block main %} {% load static %}
+
+<!-- Signup Start -->
+<div class="contact">
+  <div class="container">
+    <div class="section-header text-center">
+      <h2>Farmer Details</h2>
+    </div>
+    <div class="contact-img">
+      <img src="{% static 'img/help.png' %}" alt="Image" />
+    </div>
+    <div class="contact-form">
+      <div id="success"></div>
+
+      <!-- farmer form  -->
+
+      <section style="background-color: #eee">
+        <div class="container py-5">
+          <div class="row">
+            <div class="col"></div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="card mb-4">
+                <div class="card-body text-center">
+                  <img
+                    src="{{products.farmer.image.url}}"
+                    alt="avatar"
+                    class="rounded-circle img-fluid"
+                    style="width: 150px"
+                  />
+                  <h5 class="my-3">{{products.farmer.name}}</h5>
+                  {% comment %}
+                  <p class="text-muted mb-1">Take a bite out of hunger.</p>
+                  {% endcomment %}
+                  <p class="text-muted mb-1">From</p>
+                  <p class="font-weight-bold">Indore,Madhya Pradesh</p>
+                  <div class="d-flex justify-content-center mb-2"></div>
+                </div>
+              </div>
+              <div class="card mb-4 mb-lg-0">
+                <div class="card-body p-0"></div>
+              </div>
+            </div>
+            <div class="col-lg-8">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Full Name</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{products.farmer.name}}</p>
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Email</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{products.farmer.email}}</p>
+                    </div>
+                  </div>
+
+                  <hr />
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Mobile</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">
+                        {{products.farmer.phone_no}}
+                      </p>
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Address</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">
+                        {{products.farmer.address}}
+                      </p>
+                    </div>
+                  </div>
+                  {% comment %}
+                  <hr />
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Room No</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">
+                        {{products.farmer.room_no}}
+                      </p>
+                    </div>
+                  </div>
+                  {% endcomment %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr />
+    </div>
+  </div>
+</div>
+<!-- Signup End -->
+
+{% endblock %}

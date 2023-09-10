@@ -1,0 +1,113 @@
+{% extends 'navbar.html' %}
+{% block main %}
+{% load static %}
+
+<!-- Carousel Start -->
+<div class="carousel">
+    <div class="container-fluid">
+        <div class="owl-carousel">
+            <div class="carousel-item">
+                <div class="carousel-img">
+                    <img src="{% static 'img/carousel-1.jpeg' %}" alt="Image" style="height: 600px;">
+                </div>
+                <div class="carousel-text">
+                    <h1>Welcome to Agri Shop Management</h1>
+                    <p>
+                        In the business of farming, the agri shop is where strategy meets supply.
+                    </p>
+                    <div class="carousel-btn">
+                        <a class="btn btn-custom" href="{% url 'addproduct' %}">Sell </a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="carousel-img">
+                    <img src="{% static 'img/carousel-2.jpg' %}" alt="Image" style="height: 600px;">
+                </div>
+                <div class="carousel-text">
+                    <h1>Quality Farming Equipment</h1>
+                    <p>
+                        Discover a Wide Range of Second-Hand Products.
+                    </p>
+                    <div class="carousel-btn">
+                        <a class="btn btn-custom" href="{% url 'addproduct' %}">Sell</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="carousel-img">
+                    <img src="{% static 'img/carousel-3.jpg' %}" alt="Image" style="height: 600px;">
+                </div>
+                <div class="carousel-text">
+                    <h1>Join Our Agri Community</h1>
+                    <p>
+                    Connect with Farmers, Share Knowledge, and Grow Together.
+                    </p>
+                    <div class="carousel-btn">
+                        <a class="btn btn-custom" href="{% url 'addproduct' %}">Sell</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Carousel End -->
+
+
+<!--about start-->
+<div class="about">
+    <div class="container">
+        <div class="row align-items-center">
+            {% comment %} <div class="col-lg-6">
+                <div class="about-img" data-parallax="scroll" data-image-src="{% static 'img/about.jpg' %}"></div>
+            </div> {% endcomment %}
+            <div class="col-lg-6">
+                <div class="section-header">
+                    <p>Learn About Us</p>
+                    <h2>All About Agri Shop</h2>
+                </div>
+                <div class="about-tab">
+                    <ul class="nav nav-pills nav-justified">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="pill" href="#tab-content-1">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="pill" href="#tab-content-2">Mission</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="pill" href="#tab-content-3">Vision</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="tab-content-1" class="container tab-pane active">
+                            At our Agri Shop Management, we believe in the power of collaboration and innovation to revolutionize
+                            the agriculture industry.We understand the challenges that farmers face, from managing operational costs
+                            to adopting sustainable practices. We also recognize the value of older equipment and products that can
+                            still serve a purpose in the hands of others.Our platform brings together a community of farmers, enthusiasts,
+                            and agricultural professionals who share a common goal: to promote sustainable, efficient, and cost-effective
+                            farming. 
+                        </div>
+                        <div id="tab-content-2" class="container tab-pane fade">
+                            "Empowering Farmers, Bridging Generations: Our mission is to create a thriving online 
+                            marketplace that connects farmers, agricultural businesses, and enthusiasts, allowing 
+                            them to buy and sell high-quality second-hand farming products. We are committed to
+                            promoting sustainability, affordability, and efficiency in agriculture by providing a 
+                            trusted platform that fosters transparency, convenience, and economic opportunities for all."
+                        </div>
+                        <div id="tab-content-3" class="container tab-pane fade">
+                            "Leading the Way in Sustainable Agriculture: Our vision is to become the premier online
+                             destination for the farming community, known for enabling seamless, eco-conscious 
+                             transactions of second-hand farming equipment and products. We aspire to be a driving 
+                             force behind the adoption of sustainable farming practices and the empowerment of 
+                             generations of farmers."
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--about end-->
+
+{% endblock %}
