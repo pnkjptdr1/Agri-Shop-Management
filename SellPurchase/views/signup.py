@@ -16,10 +16,7 @@ class Signup(View):
     def post(self,request):
        postData=request.POST
        name=postData.get('name')
-      #  branch=postData.get('branch')
        address=postData.get('address')
-      #  category=postData.get('category')
-      #  room_no=postData.get('room_no')
        phone_no=postData.get('phone_no')
        email=postData.get('email')
        password=postData.get('password')
@@ -30,18 +27,25 @@ class Signup(View):
        
        farmer=Farmer(name=name,address=address,
        phone_no=phone_no,email=email,password=password,image=image)
+      
+      
+       # if email is already exist then none  
+       try:
+            is_email_exist = Farmer.objects.get(email=email)
+       except Farmer.DoesNotExist:
+            is_email_exist = None
        
-       error_message=self.validateDonor(farmer)
+       # created a fucntion  to validate user signup details
+       error_message=self.validateFarmer(farmer,is_email_exist)
+
+
 
        if(password != password2):
           error_message="Password does not matches!!"
 
        value={
              'name':name,
-            #  'branch':branch,
              'address':address,
-            #  'category':category,
-            #  'room_no':room_no,
              'phone_no':phone_no,
              'email':email, 
              'image':image    
@@ -49,10 +53,13 @@ class Signup(View):
  
       
        if not error_message:
+           # hashing store password through hashing
            farmer.password=make_password(farmer.password)
-           farmer.register()
+           # save the farmer details
+           farmer.save()
            return redirect('farmer_login')
        else:
+           # otherwise show error on html 
            data={
                   'error':error_message,
                   'values':value
@@ -61,14 +68,12 @@ class Signup(View):
 
             
 
-    def validateDonor(self,farmer):
+    def validateFarmer(self,farmer,is_email_exist):
         error_message=None
         if(not farmer.name):
            error_message="Name Required !!"
         elif len(farmer.name) < 4:
            error_message="Name is Too Short !!"
-      #   elif(not donor.branch):
-      #      error_message="Branch/Course Name Required !!"
         elif(not farmer.address):
            error_message="address is Required !!"
         elif(not farmer.phone_no):
@@ -81,7 +86,9 @@ class Signup(View):
            error_message="Password Required !!"
         elif(len(farmer.password)<6):
            error_message="Password Must be 6 char Long"
-        elif(farmer.isExists()):
+        
+        # if user is already exist then 
+        elif(is_email_exist is not None):
            error_message="Email Already Registered ...!!"
         
         return error_message
