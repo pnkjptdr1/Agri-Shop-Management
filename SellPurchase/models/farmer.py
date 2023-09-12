@@ -12,19 +12,4 @@ class Farmer(models.Model):
     password=models.CharField(max_length=500)
     image=models.ImageField(upload_to='uploads/products/',null=True,blank=True)
     
-    def register(self):
-        self.save()
-
-    @staticmethod
-    def get_farmer_by_email(email):
-        try:
-          return Farmer.objects.get(email=email)
-        except:
-            return False
-            
-    
-    def isExists(self):
-        if Farmer.objects.filter(email=self.email):
-            return True
         
-        return False
