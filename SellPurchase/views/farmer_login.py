@@ -1,5 +1,3 @@
-
-
 from django.shortcuts import render,redirect,HttpResponseRedirect
 from SellPurchase.models.product import Product
 from SellPurchase.models.category import Category
@@ -17,16 +15,28 @@ class Login(View):
     def post(self,request):
         email=request.POST.get('email')
         password=request.POST.get('password')
-        farmer=Farmer.get_farmer_by_email(email)
+       
+        # Retrieve a single Farmer object using get() instead of filter()
+        try:
+            farmer = Farmer.objects.get(email=email)
+        except Farmer.DoesNotExist:
+            farmer = None
+
+        
         error_message = None
-        if farmer:
+
+        if farmer is not None:
             flag = check_password(password,farmer.password)
             if flag:
+
+                # store data in the session 
                 request.session['farmer']=farmer.id
                 
                 if Login.return_url:
+                   # agar nhi huva to usi page per waps for refresh
                    return HttpResponseRedirect(Login.return_url)
                 else:
+                   # agar login ho gya to
                    Login.return_url=None
                    return redirect('index')
             else:
@@ -39,9 +49,3 @@ class Login(View):
 def logout(request):
     request.session.clear()
     return redirect('index')
-
-
-
-
-
- 
