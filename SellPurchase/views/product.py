@@ -7,35 +7,13 @@ from SellPurchase.models.category import Category
 from SellPurchase.models.farmer import Farmer
 from django.views import View
 
- 
+from SellPurchase.middlewares.auth import auth_middleware
+from django.utils.decorators import method_decorator
+
+
 class Products(View):
-    def post(self,request):
-       product=request.POST.get('product')
-       remove =request.POST.get('remove')
-
-       cart=request.session.get('cart')
-       if cart:
-         quantity=cart.get(product)
-         if quantity:
-            if remove:
-                if quantity<=1:
-                    cart.pop(product)
-                else:
-                    cart[product]=quantity-1
-            else:
-                cart[product]=quantity+1
-         else:
-            cart[product]=1
-       else:
-            cart = {}
-            cart[product]=1
-
-       request.session['cart']=cart
-       print(request.session['cart'])
-       return redirect('product')
-       
-
-
+   
+    @method_decorator(auth_middleware)
     def get(self,request):
        cart = request.session.get('cart')
        if not cart:
@@ -51,15 +29,3 @@ class Products(View):
        data['products']=products
        data['categories']=categories
        return render(request,'product.html',data)
-
-
- 
-    
-
-
-
-
-
- 
-
- 
